@@ -1,28 +1,35 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.math.*;
 
-class Approximately
+class Codechef
 {
 	public static void main (String[] args) throws java.lang.Exception
 	{
-		Scanner scan = new Scanner (System.in);
-        int t = scan.nextInt();
-        while (t-->0)
-        {
-            int k = scan.nextInt();
-            int a= 103993;
-            int b= 33102;
-            StringBuilder sb = new StringBuilder();
-            for (int i=0; i<=k; i++)
-            {
-                if (i==1) sb.append(".");
-                sb.append(a/b);
-                a = (a%b)*10;
+	    Scanner scan = new Scanner(System.in);
+	    int t = scan.nextInt();
+	    while(t-->0){
+	        int n = scan.nextInt();
+	        int k = scan.nextInt();
+	        int a[] = new int[n];
+	        for(int i = 0;i<n;i++)
+	            a[i]=scan.nextInt();
+	        Arrays.sort(a);
+	        long min = Long.MAX_VALUE;
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    min = Math.min(Math.abs(a[i] + a[j] - k), min);
+                }
             }
-            System.out.println(sb);
-        }
-
+	        int count=0;
+		    for(int i=0;i<n;i++){
+		        for(int j=i+1;j<n;j++){
+		            int val=Math.abs((a[i]+a[j])-k);
+		            if(val==min) count++;
+		       }
+		   }
+		   System.out.println(Math.abs(min)+" "+ count);
+	    }
 	}
 }
+
